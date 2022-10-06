@@ -21,6 +21,7 @@ const Device = sequelize.define('device', {
     name: {type: DataTypes.STRING, unique: true, allowNull: false},
     price: {type: DataTypes.INTEGER, allowNull: false},
     rating: {type: DataTypes.INTEGER, defaultValue: 0},
+    // brand: {type: DataTypes.INTEGER, defaultValue: 3},
     img: {type: DataTypes.STRING, allowNull: false},
 })
 
@@ -50,10 +51,10 @@ const TypeBrand = sequelize.define('type_brand', {
 })
 
 
-User.hasOne(Basket)
-Basket.belongsTo(User)
+User.hasOne(Basket) // связь один к одному по диаграмме
+Basket.belongsTo(User) // корзина принадлежит пользователю
 
-User.hasMany(Rating)
+User.hasMany(Rating) // связь один ко многим
 Rating.belongsTo(User)
 
 Basket.hasMany(BasketDevice)
@@ -74,8 +75,10 @@ BasketDevice.belongsTo(Device)
 Device.hasMany(DeviceInfo, {as: 'info'});
 DeviceInfo.belongsTo(Device)
 
-Type.belongsToMany(Brand, {through: TypeBrand })
+Type.belongsToMany(Brand, {through: TypeBrand }) // связь многое ко многим
+// {through: TypeBrand } - созданная связующая таблица для многих типов к многим брендам
 Brand.belongsToMany(Type, {through: TypeBrand })
+// внешние ключи sequelize добавляет автоматически
 
 module.exports = {
     User,

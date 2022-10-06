@@ -1,3 +1,4 @@
+// функции бэка (регистрация, логин, проверка авторизации)
 const ApiError = require('../error/ApiError');
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
@@ -10,7 +11,8 @@ const generateJwt = (id, email, role) => {
         {expiresIn: '24h'}
     )
 }
-
+// адевкатную, полную валидацию смотреть в видео про авторизацию Ulbi TV
+// можно было написать и не классом, класс просто группирует наши функции
 class UserController {
     async registration(req, res, next) {
         const {email, password, role} = req.body

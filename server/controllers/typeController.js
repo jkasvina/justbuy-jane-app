@@ -1,3 +1,5 @@
+// добавляем в бд объекты
+// методы get post описаны и typeRouter, который вызывает этот файл
 const {Type} = require('../models/models')
 const ApiError = require('../error/ApiError');
 
@@ -10,7 +12,7 @@ class TypeController {
 
     async getAll(req, res) {
         const types = await Type.findAll()
-        return res.json(types)
+        return res.json(types) // важно именно вернуть json
     }
 
 }

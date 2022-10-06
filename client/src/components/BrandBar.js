@@ -4,8 +4,9 @@ import {Context} from "../index";
 import {Card, Row} from "react-bootstrap";
 
 const BrandBar = observer(() => {
-    const {device} = useContext(Context)
-
+    const {device} = useContext(Context);
+    // device.brands.unshift({id: 0, name: 'All'});
+    // console.log('device',device)
     return (
         <Row className="d-flex">
             {device.brands.map(brand =>
